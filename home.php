@@ -1,8 +1,20 @@
 <?php
 $products = $products ?? [];
 $cases = $cases ?? [];
-$carouselProducts = food_get_carousel_products(4);
-$latestPosts = food_get_latest_posts(3);
+// 使用通用函数获取推荐产品，参数可根据需要调整（如 ['featured' => true, 'limit' => 4]）
+$carouselProducts = get_products(['limit' => 4, 'featured' => true]);
+// 如果推荐产品不足，可以补充最新产品，或者直接获取最新产品： get_products(['limit' => 4]);
+if (count($carouselProducts) < 4) {
+    $more = get_products(['limit' => 4 - count($carouselProducts)]);
+    // 简单的合并，可能会有重复，实际项目中可在 get_products 内部处理排除逻辑或在此处去重
+    $ids = array_column($carouselProducts, 'id');
+    foreach ($more as $m) {
+        if (!in_array($m['id'], $ids)) {
+            $carouselProducts[] = $m;
+        }
+    }
+}
+$latestPosts = get_posts(['limit' => 3]);
 $categories = [];
 if (!empty(get_product_categories())) {
     $categories = get_product_categories();
@@ -59,11 +71,11 @@ $heroCover = !empty($site['og_image']) ? $site['og_image'] : 'https://devtool.te
         <div class="food-grid-4">
             <?php foreach ($carouselProducts as $p): ?>
                 <article class="food-card">
-                    <a href="<?= h($p['url']) ?>">
-                        <img src="<?= asset_url($p['cover'] ?: '/assets/no-image.png') ?>" alt="<?= h($p['title']) ?>" loading="lazy">
+                    <a href="<?= $p['url'] ?>">
+                        <img class="food-card-img" src="<?= asset_url($p['cover']) ?>" alt="<?= $p['title']; ?>" loading="lazy">
                     </a>
                     <div class="food-card-body">
-                        <h3><a href="<?= h($p['url']) ?>"><?= h($p['title']) ?></a></h3>
+                        <h3><a href="<?= $p['url'] ?>"><?= $p['title'] ?></a></h3>
                         <p><?= mb_substr(strip_tags((string)$p['summary']), 0, 72) ?></p>
                     </div>
                 </article>
