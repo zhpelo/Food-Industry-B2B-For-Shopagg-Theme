@@ -1,8 +1,8 @@
 <?php
 $products = $products ?? [];
 $cases = $cases ?? [];
-$carouselProducts = function_exists('food_get_carousel_products') ? food_get_carousel_products(4) : [];
-$latestPosts = function_exists('food_get_latest_posts') ? food_get_latest_posts(3) : [];
+$carouselProducts = food_get_carousel_products(4);
+$latestPosts = food_get_latest_posts(3);
 $categories = [];
 if (class_exists('\App\Models\Category')) {
     $categoryModel = new \App\Models\Category();
@@ -59,8 +59,6 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
         </div>
         <div class="food-grid-4">
             <?php foreach ($carouselProducts as $p): ?>
-
-   
                 <article class="food-card">
                     <a href="<?= h($p['url']) ?>">
                         <img src="<?= asset_url($p['cover'] ?: '/assets/no-image.png') ?>" alt="<?= h($p['title']) ?>" loading="lazy">

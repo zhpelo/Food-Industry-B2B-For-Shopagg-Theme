@@ -25,6 +25,9 @@ if (!function_exists('food_get_carousel_products')) {
             }
         }
 
+        // var_dump($featured);
+        // die();
+
         $cache = array_map(function (array $item): array {
             return [
                 'title' => $item['title'] ?? '',
