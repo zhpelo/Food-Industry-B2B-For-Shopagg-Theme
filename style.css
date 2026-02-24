@@ -190,7 +190,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--food-shadow);
 }
 .food-card-body { padding: 1.1rem; }
-.food-card img { border-radius: 14px 14px 0 0; aspect-ratio: 1/1; object-fit: cover; }
+/* .food-card img { border-radius: 14px 14px 0 0; aspect-ratio: 1/1; object-fit: cover; } */
 .food-card h3 { margin: 0 0 .35rem; font-size: 1rem; }
 .food-card p { margin: 0; color: var(--food-muted); font-size: .92rem; }
 

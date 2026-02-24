@@ -23,7 +23,7 @@ $heroCover = $site['og_image'] ?? 'https://images.unsplash.com/photo-15791138000
             </div>
         </div>
         <div class="food-hero-media">
-            <img src="<?= h($heroCover) ?>" alt="<?= h($site['name'] ?? 'food supplier') ?>" loading="eager">
+            <img src="<?= asset_url($heroCover) ?>" alt="<?= h($site['name'] ?? 'food supplier') ?>" loading="eager">
         </div>
     </div>
 </section>
@@ -59,9 +59,11 @@ $heroCover = $site['og_image'] ?? 'https://images.unsplash.com/photo-15791138000
         </div>
         <div class="food-grid-4">
             <?php foreach ($carouselProducts as $p): ?>
+
+   
                 <article class="food-card">
                     <a href="<?= h($p['url']) ?>">
-                        <img src="<?= asset_url(h($p['cover'] ?: '/assets/no-image.png')) ?>" alt="<?= h($p['title']) ?>" loading="lazy">
+                        <img src="<?= asset_url($p['cover'] ?: '/assets/no-image.png') ?>" alt="<?= h($p['title']) ?>" loading="lazy">
                     </a>
                     <div class="food-card-body">
                         <h3><a href="<?= h($p['url']) ?>"><?= h($p['title']) ?></a></h3>
@@ -113,7 +115,7 @@ $heroCover = $site['og_image'] ?? 'https://images.unsplash.com/photo-15791138000
                 </div>
             </article>
             <article class="food-card">
-                <img src="<?= h($site['og_image'] ?? $heroCover) ?>" alt="food factory" loading="lazy">
+                <img src="<?= asset_url($site['og_image'] ?? $heroCover) ?>" alt="food factory" loading="lazy">
                 <div class="food-card-body">
                     <h3><?= h(t('home_global')) ?></h3>
                     <p><?= h(t('home_ready_desc')) ?></p>
