@@ -13,8 +13,8 @@ if (!empty($site['company_certificates_json'])) {
         <nav class="food-breadcrumb">
             <a href="<?= url('/') ?>">Home</a> / <span>About Us</span>
         </nav>
-        <h1 class="food-title"><?= h($site['name'] ?? 'Company Profile') ?></h1>
-        <p class="food-subtitle"><?= h($site['tagline'] ?? '') ?></p>
+        <h1 class="food-title"><?= $site['name'] ?? 'Company Profile' ?></h1>
+        <p class="food-subtitle"><?= $site['tagline'] ?? '' ?></p>
     </div>
 </section>
 
@@ -25,15 +25,15 @@ if (!empty($site['company_certificates_json'])) {
                 <h2 class="food-title" style="font-size:1.45rem;">Company Profile</h2>
                 <p class="food-subtitle"><?= nl2br(h($site['company_bio'] ?? '')) ?></p>
                 <ul style="margin-top:1rem;padding-left:1rem;">
-                    <li>Business Type: <?= h($site['company_business_type'] ?? '-') ?></li>
-                    <li>Main Products: <?= h($site['company_main_products'] ?? '-') ?></li>
-                    <li>Year of Establishment: <?= h($site['company_year_established'] ?? '-') ?></li>
-                    <li>Main Markets: <?= h($site['company_main_markets'] ?? '-') ?></li>
+                    <li>Business Type: <?= $site['company_business_type'] ?? '-' ?></li>
+                    <li>Main Products: <?= $site['company_main_products'] ?? '-' ?></li>
+                    <li>Year of Establishment: <?= $site['company_year_established'] ?? '-' ?></li>
+                    <li>Main Markets: <?= $site['company_main_markets'] ?? '-' ?></li>
                 </ul>
             </div>
         </article>
         <article class="food-card">
-            <img src="<?= h($site['og_image'] ?? 'https://images.unsplash.com/photo-1593364491093-f290c6ddac80?auto=format&fit=crop&w=1200&q=80') ?>" alt="about us" loading="lazy">
+            <img class="food-card-img" src="<?= asset_url($site['og_image'] != "" ? $site['og_image'] : 'https://devtool.tech/api/placeholder/800/800') ?>" alt="about us">
             <div class="food-card-body">
                 <h3>Why Choose Us</h3>
                 <p>ISO Certified</p>
@@ -70,7 +70,7 @@ if (!empty($site['company_certificates_json'])) {
             <?php foreach ($certItems as $item): ?>
                 <?php if (!empty($item['img'])): ?>
                     <article class="food-card">
-                        <img src="<?= asset_url(h($item['img'])) ?>" alt="<?= h($item['title'] ?? '') ?>" loading="lazy">
+                        <img src="<?= asset_url($item['img']) ?>" alt="<?= h($item['title'] ?? '') ?>" loading="lazy">
                         <div class="food-card-body"><h3><?= h($item['title'] ?? '') ?></h3></div>
                     </article>
                 <?php endif; ?>
