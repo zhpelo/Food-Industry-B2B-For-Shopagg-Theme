@@ -1,4 +1,4 @@
-# SHOPAGG 主题：b2b-002
+# SHOPAGG 主题：Food-Industry-B2B 
 
 `Food-Industry-B2B-For-Shopagg-Theme` 是一个面向食品行业（可扩展至通用外贸行业）的响应式 B2B 官网主题，适配 SHOPAGG 开源程序。
 
