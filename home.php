@@ -8,7 +8,7 @@ if (class_exists('\App\Models\Category')) {
     $categoryModel = new \App\Models\Category();
     $categories = $categoryModel->getTree('product');
 }
-$heroCover = $site['og_image'] ?? 'https://images.unsplash.com/photo-1579113800032-c38bd7635818?auto=format&fit=crop&w=1200&q=80';
+$heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800';
 ?>
 
 <section class="food-hero">
@@ -115,7 +115,7 @@ $heroCover = $site['og_image'] ?? 'https://images.unsplash.com/photo-15791138000
                 </div>
             </article>
             <article class="food-card">
-                <img src="<?= asset_url($site['og_image'] ?? $heroCover) ?>" alt="food factory" loading="lazy">
+                <img class="food-card-img" src="<?= asset_url($site['og_image'] ?? $heroCover) ?>" alt="food factory" loading="lazy">
                 <div class="food-card-body">
                     <h3><?= h(t('home_global')) ?></h3>
                     <p><?= h(t('home_ready_desc')) ?></p>
@@ -136,7 +136,7 @@ $heroCover = $site['og_image'] ?? 'https://images.unsplash.com/photo-15791138000
             <?php foreach (array_slice($cases, 0, 6) as $case): ?>
                 <article class="food-card">
                     <a href="<?= h($case['url']) ?>">
-                        <img src="<?= asset_url(h($case['cover'] ?: '/assets/no-image.png')) ?>" alt="<?= h($case['title']) ?>" loading="lazy">
+                        <img class="food-card-img" src="<?= asset_url(h($case['cover'] ?: '/assets/no-image.png')) ?>" alt="<?= h($case['title']) ?>" loading="lazy">
                     </a>
                     <div class="food-card-body">
                         <h3><a href="<?= h($case['url']) ?>"><?= h($case['title']) ?></a></h3>
