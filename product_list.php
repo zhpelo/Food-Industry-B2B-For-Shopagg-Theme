@@ -29,8 +29,8 @@ $currentCategoryId = $currentCategory ? (int)$currentCategory['id'] : null;
         <div class="food-product-list">
             <?php if (empty($items)): ?>
                 <article class="food-card">
-                    <div class="food-card-body food-center">
-                        <p>No products found</p>
+                    <div class="food-card-body food-center" style="padding: 100px 20px;">
+                        <p style="margin-bottom: 50px;">No products found</p>
                         <a class="food-btn food-btn-soft" href="<?= url('/products') ?>">View All Products</a>
                     </div>
                 </article>

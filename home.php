@@ -7,7 +7,7 @@ $categories = [];
 if (!empty(get_product_categories())) {
     $categories = get_product_categories();
 }
-$heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800';
+$heroCover = !empty($site['og_image']) ? $site['og_image'] : 'https://devtool.tech/api/placeholder/800/800';
 ?>
 
 <section class="food-hero">
@@ -22,7 +22,7 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
             </div>
         </div>
         <div class="food-hero-media">
-            <img src="<?= asset_url($heroCover) ?>" alt="<?= h($site['name'] ?? 'food supplier') ?>" loading="eager">
+            <img src="<?= asset_url($heroCover) ?>" alt="<?= h($site['name'] ?? 'Food Manufacturer') ?>" loading="eager">
         </div>
     </div>
 </section>
@@ -112,7 +112,7 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
                 </div>
             </article>
             <article class="food-card">
-                <img class="food-card-img" src="<?= asset_url($site['og_image'] ?? $heroCover) ?>" alt="food factory" loading="lazy">
+                <img class="food-card-img" src="<?= asset_url(!empty($site['og_image']) ? $site['og_image'] : $heroCover) ?>" alt="food factory" loading="lazy">
                 <div class="food-card-body">
                     <h3>Global Presence</h3>
                     <p>Contact us today for a professional quote and expert consultation.</p>
