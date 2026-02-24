@@ -2,8 +2,8 @@
 <section class="food-section-sm">
     <div class="food-container">
         <nav class="food-breadcrumb">
-            <a href="<?= url('/') ?>"><?= h(t('nav_home')) ?></a> /
-            <a href="<?= url('/blog') ?>"><?= h(t('blog')) ?></a>
+            <a href="<?= url('/') ?>">Home</a> /
+            <a href="<?= url('/blog') ?>">Blog</a>
             <?php if ($category): ?> / <a href="<?= url('/blog') ?>?category=<?= (int)$category['id'] ?>"><?= h($category['name']) ?></a><?php endif; ?>
             / <span><?= h($item['title']) ?></span>
         </nav>
@@ -24,9 +24,9 @@
             <div class="food-rich"><?= process_rich_text($item['content']) ?></div>
             <div class="food-actions" style="margin-top:1.4rem;">
                 <?php if ($category): ?>
-                    <a class="food-btn food-btn-outline" href="<?= url('/blog') ?>?category=<?= (int)$category['id'] ?>"><?= h(t('post_more_in_category')) ?></a>
+                    <a class="food-btn food-btn-outline" href="<?= url('/blog') ?>?category=<?= (int)$category['id'] ?>">More in this category</a>
                 <?php endif; ?>
-                <a class="food-btn food-btn-soft" href="<?= url('/blog') ?>"><?= h(t('post_back_list')) ?></a>
+                <a class="food-btn food-btn-soft" href="<?= url('/blog') ?>">Back to Blog List</a>
             </div>
         </article>
     </div>

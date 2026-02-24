@@ -9,12 +9,11 @@ if (!function_exists('food_get_carousel_products')) {
             return array_slice($cache, 0, $limit);
         }
 
-        $productModel = new \App\Models\Product();
-        $featured = $productModel->getFeatured($limit);
+        $featured = get_products(['featured' => true, 'limit' => $limit]);
 
         if (count($featured) < $limit) {
             $excludeIds = array_column($featured, 'id');
-            $latest = $productModel->getLatest($limit + 8);
+            $latest = get_products(['limit' => $limit + 8]);
             foreach ($latest as $item) {
                 if (count($featured) >= $limit) {
                     break;
@@ -24,10 +23,6 @@ if (!function_exists('food_get_carousel_products')) {
                 }
             }
         }
-
-        // var_dump($featured);
-        // die();
-
         $cache = array_map(function (array $item): array {
             return [
                 'title' => $item['title'] ?? '',
@@ -44,15 +39,7 @@ if (!function_exists('food_get_carousel_products')) {
 if (!function_exists('food_get_latest_posts')) {
     function food_get_latest_posts(int $limit = 3): array
     {
-        $postModel = new \App\Models\PostModel();
-        $items = [];
-        if (method_exists($postModel, 'getLatest')) {
-            $method = 'getLatest';
-            $items = $postModel->{$method}($limit);
-        } else {
-            $items = $postModel->getList(0, true);
-            $items = array_slice($items, 0, $limit);
-        }
+        $items = get_posts(['limit' => $limit]);
         foreach ($items as &$item) {
             if (empty($item['url']) && !empty($item['slug'])) {
                 $item['url'] = url('/blog/' . $item['slug']);

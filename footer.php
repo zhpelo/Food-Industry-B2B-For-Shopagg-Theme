@@ -7,14 +7,14 @@
                 <p><?= h($site['tagline'] ?? '') ?></p>
             </section>
             <section>
-                <h4><?= h(t('footer_company')) ?></h4>
-                <a href="<?= url('/about') ?>"><?= h(t('nav_about')) ?></a>
-                <a href="<?= url('/products') ?>"><?= h(t('nav_products')) ?></a>
-                <a href="<?= url('/cases') ?>"><?= h(t('nav_cases')) ?></a>
-                <a href="<?= url('/blog') ?>"><?= h(t('nav_blog')) ?></a>
+                <h4>Company</h4>
+                <a href="<?= url('/about') ?>">About Us</a>
+                <a href="<?= url('/products') ?>">Products</a>
+                <a href="<?= url('/cases') ?>">Cases</a>
+                <a href="<?= url('/blog') ?>">Blog</a>
             </section>
             <section>
-                <h4><?= h(t('footer_contact')) ?></h4>
+                <h4>Contact</h4>
                 <?php if (!empty($site['company_email'])): ?>
                     <a href="mailto:<?= h($site['company_email']) ?>"><?= h($site['company_email']) ?></a>
                 <?php endif; ?>
@@ -27,7 +27,7 @@
             </section>
         </div>
         <div class="food-footer-bottom">
-            <p>© <?= date('Y') ?> <?= h($site['name'] ?? '') ?>. <?= h(t('footer_rights')) ?></p>
+            <p>© <?= date('Y') ?> <?= h($site['name'] ?? '') ?>. All rights reserved.</p>
         </div>
     </div>
 </footer>

@@ -11,9 +11,9 @@ if (!empty($site['company_certificates_json'])) {
 <section class="food-section-sm">
     <div class="food-container">
         <nav class="food-breadcrumb">
-            <a href="<?= url('/') ?>"><?= h(t('nav_home')) ?></a> / <span><?= h(t('nav_about')) ?></span>
+            <a href="<?= url('/') ?>">Home</a> / <span>About Us</span>
         </nav>
-        <h1 class="food-title"><?= h($site['name'] ?? t('about_profile')) ?></h1>
+        <h1 class="food-title"><?= h($site['name'] ?? 'Company Profile') ?></h1>
         <p class="food-subtitle"><?= h($site['tagline'] ?? '') ?></p>
     </div>
 </section>
@@ -22,23 +22,23 @@ if (!empty($site['company_certificates_json'])) {
     <div class="food-container food-grid-2">
         <article class="food-card">
             <div class="food-card-body">
-                <h2 class="food-title" style="font-size:1.45rem;"><?= h(t('about_profile')) ?></h2>
+                <h2 class="food-title" style="font-size:1.45rem;">Company Profile</h2>
                 <p class="food-subtitle"><?= nl2br(h($site['company_bio'] ?? '')) ?></p>
                 <ul style="margin-top:1rem;padding-left:1rem;">
-                    <li><?= h(t('about_biz_type')) ?>: <?= h($site['company_business_type'] ?? '-') ?></li>
-                    <li><?= h(t('about_main_products')) ?>: <?= h($site['company_main_products'] ?? '-') ?></li>
-                    <li><?= h(t('about_year')) ?>: <?= h($site['company_year_established'] ?? '-') ?></li>
-                    <li><?= h(t('about_main_markets')) ?>: <?= h($site['company_main_markets'] ?? '-') ?></li>
+                    <li>Business Type: <?= h($site['company_business_type'] ?? '-') ?></li>
+                    <li>Main Products: <?= h($site['company_main_products'] ?? '-') ?></li>
+                    <li>Year of Establishment: <?= h($site['company_year_established'] ?? '-') ?></li>
+                    <li>Main Markets: <?= h($site['company_main_markets'] ?? '-') ?></li>
                 </ul>
             </div>
         </article>
         <article class="food-card">
             <img src="<?= h($site['og_image'] ?? 'https://images.unsplash.com/photo-1593364491093-f290c6ddac80?auto=format&fit=crop&w=1200&q=80') ?>" alt="about us" loading="lazy">
             <div class="food-card-body">
-                <h3><?= h(t('home_why_us')) ?></h3>
-                <p><?= h(t('home_iso')) ?></p>
-                <p><?= h(t('home_oem')) ?></p>
-                <p><?= h(t('home_rd')) ?></p>
+                <h3>Why Choose Us</h3>
+                <p>ISO Certified</p>
+                <p>OEM & ODM</p>
+                <p>R&D Team</p>
             </div>
         </article>
     </div>
@@ -47,7 +47,7 @@ if (!empty($site['company_certificates_json'])) {
 <?php if (!empty($showItems)): ?>
 <section class="food-section-sm">
     <div class="food-container">
-        <h2 class="food-title" style="font-size:1.5rem;"><?= h(t('about_corp_show')) ?></h2>
+        <h2 class="food-title" style="font-size:1.5rem;">Company Show</h2>
         <div class="food-grid-4">
             <?php foreach ($showItems as $item): ?>
                 <?php if (!empty($item['img'])): ?>
@@ -65,7 +65,7 @@ if (!empty($site['company_certificates_json'])) {
 <?php if (!empty($certItems)): ?>
 <section class="food-section-sm">
     <div class="food-container">
-        <h2 class="food-title" style="font-size:1.5rem;"><?= h(t('about_certificates')) ?></h2>
+        <h2 class="food-title" style="font-size:1.5rem;">Certificates</h2>
         <div class="food-grid-4">
             <?php foreach ($certItems as $item): ?>
                 <?php if (!empty($item['img'])): ?>

@@ -4,9 +4,8 @@ $cases = $cases ?? [];
 $carouselProducts = food_get_carousel_products(4);
 $latestPosts = food_get_latest_posts(3);
 $categories = [];
-if (class_exists('\App\Models\Category')) {
-    $categoryModel = new \App\Models\Category();
-    $categories = $categoryModel->getTree('product');
+if (!empty(get_product_categories())) {
+    $categories = get_product_categories();
 }
 $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800';
 ?>
@@ -16,10 +15,10 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
         <div>
             <span class="food-badge"><i class="fa-solid fa-seedling"></i> Food Industry B2B</span>
             <h1 class="food-title"><?= h($site['name'] ?? 'Food Manufacturer') ?></h1>
-            <p class="food-subtitle"><?= h($site['tagline'] ?? t('home_highlights')) ?></p>
+            <p class="food-subtitle"><?= h($site['tagline'] ?? 'Company Highlights') ?></p>
             <div class="food-hero-actions">
-                <a class="food-btn food-btn-primary" href="<?= url('/products') ?>"><?= h(t('section_featured_products')) ?></a>
-                <a class="food-btn food-btn-soft" href="<?= url('/contact') ?>"><?= h(t('cta_quote')) ?></a>
+                <a class="food-btn food-btn-primary" href="<?= url('/products') ?>">Featured Products</a>
+                <a class="food-btn food-btn-soft" href="<?= url('/contact') ?>">Request Quote</a>
             </div>
         </div>
         <div class="food-hero-media">
@@ -33,18 +32,18 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
         <div class="food-feature-list">
             <article class="food-feature-item">
                 <i class="fa-solid fa-shield-heart"></i>
-                <h4><?= h(t('home_quality_title')) ?></h4>
-                <p><?= h(t('home_quality_desc')) ?></p>
+                <h4>Quality Assurance</h4>
+                <p>ISO-aligned production with strict QC before shipment.</p>
             </article>
             <article class="food-feature-item">
                 <i class="fa-solid fa-truck-fast"></i>
-                <h4><?= h(t('home_logistics_title')) ?></h4>
-                <p><?= h(t('home_logistics_desc')) ?></p>
+                <h4>Global Logistics</h4>
+                <p>On-time delivery with consolidated freight options.</p>
             </article>
             <article class="food-feature-item">
                 <i class="fa-solid fa-tags"></i>
-                <h4><?= h(t('home_support_title')) ?></h4>
-                <p><?= h(t('home_support_desc')) ?></p>
+                <h4>Dedicated Support</h4>
+                <p>One-to-one account service for long-term buyers.</p>
             </article>
         </div>
     </div>
@@ -54,8 +53,8 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
 <section class="food-section">
     <div class="food-container">
         <div class="food-center" style="margin-bottom:1rem;">
-            <h2 class="food-title"><?= h(t('section_featured_products')) ?></h2>
-            <p class="food-subtitle"><?= h(t('product_list_subtitle')) ?></p>
+            <h2 class="food-title">Featured Products</h2>
+            <p class="food-subtitle">Browse our full range of products.</p>
         </div>
         <div class="food-grid-4">
             <?php foreach ($carouselProducts as $p): ?>
@@ -65,7 +64,7 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
                     </a>
                     <div class="food-card-body">
                         <h3><a href="<?= h($p['url']) ?>"><?= h($p['title']) ?></a></h3>
-                        <p><?= h(mb_substr(strip_tags((string)$p['summary']), 0, 72)) ?></p>
+                        <p><?= mb_substr(strip_tags((string)$p['summary']), 0, 72) ?></p>
                     </div>
                 </article>
             <?php endforeach; ?>
@@ -78,7 +77,7 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
 <section class="food-section-sm">
     <div class="food-container">
         <div class="food-center" style="margin-bottom:1rem;">
-            <h2 class="food-title"><?= h(t('home_feature_categories')) ?></h2>
+            <h2 class="food-title">Featured Categories</h2>
         </div>
         <div class="food-grid-4">
             <?php foreach (array_slice($categories, 0, 8) as $cat): ?>
@@ -86,9 +85,9 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
                     <div class="food-card-body">
                         <h3><?= h($cat['name']) ?></h3>
                         <?php if (!empty($cat['description'])): ?>
-                            <p><?= h(mb_substr(strip_tags((string)$cat['description']), 0, 60)) ?></p>
+                            <p><?= mb_substr(strip_tags((string)$cat['description']), 0, 60) ?></p>
                         <?php else: ?>
-                            <p><?= h(t('product_view_details')) ?></p>
+                            <p>View Details</p>
                         <?php endif; ?>
                     </div>
                 </a>
@@ -103,20 +102,20 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
         <div class="food-grid-2">
             <article class="food-card">
                 <div class="food-card-body">
-                    <h2 class="food-title" style="font-size:1.6rem"><?= h(t('home_why_us')) ?></h2>
-                    <p class="food-subtitle"><?= h($site['company_bio'] ?? t('home_highlights')) ?></p>
+                    <h2 class="food-title" style="font-size:1.6rem">Why Choose Us</h2>
+                    <p class="food-subtitle"><?= h($site['company_bio'] ?? 'Company Highlights') ?></p>
                     <ul style="padding-left:1rem;margin:1rem 0 0;">
-                        <li><?= h(t('home_iso')) ?></li>
-                        <li><?= h(t('home_oem')) ?></li>
-                        <li><?= h(t('home_rd')) ?></li>
+                        <li>ISO Certified</li>
+                        <li>OEM & ODM</li>
+                        <li>R&D Team</li>
                     </ul>
                 </div>
             </article>
             <article class="food-card">
                 <img class="food-card-img" src="<?= asset_url($site['og_image'] ?? $heroCover) ?>" alt="food factory" loading="lazy">
                 <div class="food-card-body">
-                    <h3><?= h(t('home_global')) ?></h3>
-                    <p><?= h(t('home_ready_desc')) ?></p>
+                    <h3>Global Presence</h3>
+                    <p>Contact us today for a professional quote and expert consultation.</p>
                 </div>
             </article>
         </div>
@@ -127,8 +126,8 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
 <section class="food-section-sm">
     <div class="food-container">
         <div class="food-center" style="margin-bottom:1rem;">
-            <h2 class="food-title"><?= h(t('section_success_cases')) ?></h2>
-            <p class="food-subtitle"><?= h(t('case_interest')) ?></p>
+            <h2 class="food-title">Success Cases</h2>
+            <p class="food-subtitle">If you are interested in this solution or have similar needs, please contact our expert team.</p>
         </div>
         <div class="food-grid-3">
             <?php foreach (array_slice($cases, 0, 6) as $case): ?>
@@ -138,7 +137,7 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
                     </a>
                     <div class="food-card-body">
                         <h3><a href="<?= h($case['url']) ?>"><?= h($case['title']) ?></a></h3>
-                        <p><?= h(mb_substr(strip_tags((string)($case['summary'] ?? '')), 0, 68)) ?></p>
+                        <p><?= mb_substr(strip_tags((string)($case['summary'] ?? '')), 0, 68) ?></p>
                     </div>
                 </article>
             <?php endforeach; ?>
@@ -151,7 +150,7 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
 <section class="food-section-sm">
     <div class="food-container">
         <div class="food-center" style="margin-bottom:1rem;">
-            <h2 class="food-title"><?= h(t('home_latest_news')) ?></h2>
+            <h2 class="food-title">Latest News</h2>
         </div>
         <div class="food-grid-3">
             <?php foreach ($latestPosts as $post): ?>
@@ -159,7 +158,7 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
                     <div class="food-card-body">
                         <div class="food-meta"><span><?= format_date($post['created_at'], 'Y-m-d') ?></span></div>
                         <h3 style="margin-top:.45rem;"><a href="<?= h($post['url'] ?? url('/blog')) ?>"><?= h($post['title'] ?? '') ?></a></h3>
-                        <p><?= h(mb_substr(strip_tags((string)($post['summary'] ?? '')), 0, 88)) ?></p>
+                        <p><?= mb_substr(strip_tags((string)($post['summary'] ?? '')), 0, 88) ?></p>
                     </div>
                 </article>
             <?php endforeach; ?>
@@ -172,11 +171,11 @@ $heroCover = $site['og_image'] ?? 'https://devtool.tech/api/placeholder/800/800'
     <div class="food-container">
         <div class="food-card" style="background:linear-gradient(140deg, #edf8f0, #ffffff); padding:100px 20px; ">
             <div class="food-card-body food-center">
-                <h2 class="food-title" style="font-size:1.8rem;"><?= h(t('home_ready_title')) ?></h2>
-                <p class="food-subtitle"><?= h(t('home_ready_desc')) ?></p>
+                <h2 class="food-title" style="font-size:1.8rem;">Ready to start your project?</h2>
+                <p class="food-subtitle">Contact us today for a professional quote and expert consultation.</p>
                 <div class="food-hero-actions" style="justify-content:center;">
-                    <a class="food-btn food-btn-primary" href="<?= url('/contact') ?>"><?= h(t('cta_quote')) ?></a>
-                    <a class="food-btn food-btn-outline" href="<?= url('/products') ?>"><?= h(t('btn_view_all')) ?></a>
+                    <a class="food-btn food-btn-primary" href="<?= url('/contact') ?>">Request Quote</a>
+                    <a class="food-btn food-btn-outline" href="<?= url('/products') ?>">View All</a>
                 </div>
             </div>
         </div>

@@ -16,8 +16,8 @@ if (empty($galleryImages) && !empty($item['banner_image'])) {
 <section class="food-section-sm">
     <div class="food-container">
         <nav class="food-breadcrumb">
-            <a href="<?= url('/') ?>"><?= h(t('nav_home')) ?></a> /
-            <a href="<?= url('/products') ?>"><?= h(t('products')) ?></a>
+            <a href="<?= url('/') ?>">Home</a> /
+            <a href="<?= url('/products') ?>">Products</a>
             <?php if ($category): ?> / <a href="<?= url('/products') ?>?category=<?= (int)$category['id'] ?>"><?= h($category['name']) ?></a><?php endif; ?>
             / <span><?= h($item['title']) ?></span>
         </nav>
@@ -46,7 +46,7 @@ if (empty($galleryImages) && !empty($item['banner_image'])) {
                     </div>
                 </div>
             <?php else: ?>
-                <div class="food-card-body"><p><?= h(t('product_no_items')) ?></p></div>
+                <div class="food-card-body"><p>No products found</p></div>
             <?php endif; ?>
         </div>
 
@@ -62,12 +62,12 @@ if (empty($galleryImages) && !empty($item['banner_image'])) {
 
             <?php if (!empty($price_tiers)): ?>
                 <div class="food-price">
-                    <strong><?= h(t('product_price_tiers')) ?></strong>
+                    <strong>Tiered Pricing</strong>
                     <div class="food-price-grid">
                         <?php foreach ($price_tiers as $tier): ?>
                             <div>
                                 <strong><?= h($tier['currency']) ?> $<?= h((string)$tier['price']) ?></strong>
-                                <span class="food-subtitle" style="font-size:.85rem;"><?= number_format((float)$tier['min_qty']) ?><?= !empty($tier['max_qty']) ? '-' . number_format((float)$tier['max_qty']) : '+' ?> <?= h(t('product_pieces')) ?></span>
+                                <span class="food-subtitle" style="font-size:.85rem;"><?= number_format((float)$tier['min_qty']) ?><?= !empty($tier['max_qty']) ? '-' . number_format((float)$tier['max_qty']) : '+' ?> Pieces</span>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -76,10 +76,10 @@ if (empty($galleryImages) && !empty($item['banner_image'])) {
 
             <div class="food-actions">
                 <?php if ($inquiry_form): ?>
-                    <a class="food-btn food-btn-primary" id="food-open-inquiry" type="button"><?= h(t('detail_send_inquiry')) ?></a>
+                    <a class="food-btn food-btn-primary" id="food-open-inquiry" type="button">Send Inquiry</a>
                 <?php endif; ?>
                 <?php if (!empty($waDigits)): ?>
-                    <a class="food-btn food-btn-soft" href="https://wa.me/<?= h($waDigits) ?>" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><?= h(t('chat_now')) ?></a>
+                    <a class="food-btn food-btn-soft" href="https://wa.me/<?= h($waDigits) ?>" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>Chat Now</a>
                 <?php endif; ?>
             </div>
         </aside>
@@ -89,7 +89,7 @@ if (empty($galleryImages) && !empty($item['banner_image'])) {
 <section class="food-section-sm" style="padding-top:0;">
     <div class="food-container">
         <article class="food-card food-card-body food-content">
-            <h2 class="food-title" style="font-size:1.35rem;"><?= h(t('detail_intro')) ?></h2>
+            <h2 class="food-title" style="font-size:1.35rem;">Product Description</h2>
             <div class="food-rich"><?= process_rich_text($item['content']) ?></div>
         </article>
     </div>
@@ -99,7 +99,7 @@ if (empty($galleryImages) && !empty($item['banner_image'])) {
 <div class="food-modal" id="food-inquiry-modal">
     <div class="food-modal-content">
         <div class="food-modal-head">
-            <h3 style="margin:0;"><?= h(t('cta_quote')) ?></h3>
+            <h3 style="margin:0;">Request Quote</h3>
             <button type="button" class="food-modal-close" id="food-close-inquiry">&times;</button>
         </div>
         <div class="food-modal-body">
@@ -108,29 +108,29 @@ if (empty($galleryImages) && !empty($item['banner_image'])) {
                 <input type="hidden" name="product_id" value="<?= h((string)$item['id']) ?>">
                 <div class="food-form-row">
                     <div class="food-form-group">
-                        <label><?= h(t('form_name_full')) ?> *</label>
-                        <input name="name" required placeholder="<?= h(t('form_name_placeholder')) ?>">
+                        <label>Your Name *</label>
+                        <input name="name" required placeholder="Full Name">
                     </div>
                     <div class="food-form-group">
-                        <label><?= h(t('form_email_full')) ?> *</label>
-                        <input name="email" type="email" required placeholder="<?= h(t('form_email_placeholder')) ?>">
+                        <label>Email Address *</label>
+                        <input name="email" type="email" required placeholder="example@email.com">
                     </div>
                 </div>
                 <div class="food-form-row">
                     <div class="food-form-group">
-                        <label><?= h(t('form_company')) ?></label>
-                        <input name="company" placeholder="<?= h(t('form_company_placeholder')) ?>">
+                        <label>Company</label>
+                        <input name="company" placeholder="Company Ltd.">
                     </div>
                     <div class="food-form-group">
-                        <label><?= h(t('form_quantity')) ?></label>
-                        <input name="quantity" placeholder="<?= h(t('form_qty_placeholder')) ?>">
+                        <label>Quantity Needed</label>
+                        <input name="quantity" placeholder="e.g. 500 units">
                     </div>
                 </div>
                 <div class="food-form-group">
-                    <label><?= h(t('form_requirements')) ?></label>
-                    <textarea name="message" placeholder="<?= h(t('form_req_placeholder')) ?>"></textarea>
+                    <label>Requirements</label>
+                    <textarea name="message" placeholder="Project requirements, customization, etc."></textarea>
                 </div>
-                <button class="food-btn food-btn-primary food-btn-block" type="submit"><?= h(t('btn_send_inquiry')) ?></button>
+                <button class="food-btn food-btn-primary food-btn-block" type="submit">Send My Inquiry</button>
             </form>
         </div>
     </div>

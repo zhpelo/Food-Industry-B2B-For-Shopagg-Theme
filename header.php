@@ -13,7 +13,7 @@ $logo = $site['logo'] ?? '';
 $orgName = $site['name'] ?? 'Food B2B Supplier';
 ?>
 <!DOCTYPE html>
-<html lang="<?= h($lang ?? 'zh') ?>">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +38,7 @@ $orgName = $site['name'] ?? 'Food B2B Supplier';
         <link rel="icon" type="image/x-icon" href="<?= h($site['favicon']) ?>">
     <?php endif; ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="<?= url('/themes/' . $currentTheme . '/style.css') ?>">
+    <link rel="stylesheet" href="<?= get_stylesheet_directory_uri() ?>/style.css">
     <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -76,18 +76,13 @@ $orgName = $site['name'] ?? 'Food B2B Supplier';
         </button>
 
         <nav class="food-nav" id="food-nav-menu">
-            <a href="<?= url('/') ?>" class="<?= $currentPath === '/' ? 'is-active' : '' ?>"><?= h(t('nav_home')) ?></a>
-            <a href="<?= url('/products') ?>" class="<?= strpos($currentPath, '/products') === 0 ? 'is-active' : '' ?>"><?= h(t('nav_products')) ?></a>
-            <a href="<?= url('/cases') ?>" class="<?= strpos($currentPath, '/cases') === 0 ? 'is-active' : '' ?>"><?= h(t('nav_cases')) ?></a>
-            <a href="<?= url('/blog') ?>" class="<?= strpos($currentPath, '/blog') === 0 ? 'is-active' : '' ?>"><?= h(t('nav_blog')) ?></a>
-            <a href="<?= url('/about') ?>" class="<?= $currentPath === '/about' ? 'is-active' : '' ?>"><?= h(t('nav_about')) ?></a>
-            <a href="<?= url('/contact') ?>" class="<?= $currentPath === '/contact' ? 'is-active' : '' ?>"><?= h(t('nav_contact')) ?></a>
-            <?php if (!empty($languages) && is_array($languages)): ?>
-                <?php foreach ($languages as $code => $label): ?>
-                    <a href="<?= h(lang_switch_url($code)) ?>" class="food-lang"><?= h($label) ?></a>
-                <?php endforeach; ?>
-            <?php endif; ?>
-            <a href="<?= url('/contact') ?>" class="food-cta"><?= h(t('cta_quote')) ?></a>
+            <a href="<?= url('/') ?>" class="<?= $currentPath === '/' ? 'is-active' : '' ?>">Home</a>
+            <a href="<?= url('/products') ?>" class="<?= strpos($currentPath, '/products') === 0 ? 'is-active' : '' ?>">Products</a>
+            <a href="<?= url('/cases') ?>" class="<?= strpos($currentPath, '/cases') === 0 ? 'is-active' : '' ?>">Cases</a>
+            <a href="<?= url('/blog') ?>" class="<?= strpos($currentPath, '/blog') === 0 ? 'is-active' : '' ?>">Blog</a>
+            <a href="<?= url('/about') ?>" class="<?= $currentPath === '/about' ? 'is-active' : '' ?>">About Us</a>
+            <a href="<?= url('/contact') ?>" class="<?= $currentPath === '/contact' ? 'is-active' : '' ?>">Contact</a>
+            <a href="<?= url('/contact') ?>" class="food-cta">Request Quote</a>
         </nav>
     </div>
 </header>
