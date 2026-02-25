@@ -31,6 +31,7 @@
         </div>
     </div>
 </footer>
+<?= get_footer_code() ?>
 <script>
 (function () {
     var menuBtn = document.getElementById('food-menu-btn');
