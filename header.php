@@ -39,6 +39,7 @@ $orgName = $site['name'] ?? 'Food B2B Supplier';
     <?php endif; ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="<?= get_stylesheet_directory_uri() ?>/style.css">
+    <?= render_google_translate_head($site) ?>
     <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -50,6 +51,7 @@ $orgName = $site['name'] ?? 'Food B2B Supplier';
     </script>
 </head>
 <body>
+<?= render_google_translate_alert($site) ?>
 <div class="food-topbar">
     <div class="food-container food-topbar-inner">
         <?php if (!empty($site['company_email'])): ?>
@@ -82,6 +84,7 @@ $orgName = $site['name'] ?? 'Food B2B Supplier';
             <a href="<?= url('/blog') ?>" class="<?= strpos($currentPath, '/blog') === 0 ? 'is-active' : '' ?>">Blog</a>
             <a href="<?= url('/about') ?>" class="<?= $currentPath === '/about' ? 'is-active' : '' ?>">About Us</a>
             <a href="<?= url('/contact') ?>" class="<?= $currentPath === '/contact' ? 'is-active' : '' ?>">Contact</a>
+            <?= render_google_translate_nav_item($site, 'food-cta', 'food-translate-item') ?>
             <a href="<?= url('/contact') ?>" class="food-cta">Request Quote</a>
         </nav>
     </div>
